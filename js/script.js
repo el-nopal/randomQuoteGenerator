@@ -1,9 +1,3 @@
-/******************************************
-Treehouse FSJS Techdegree:
-project 1 - A Random Quote Generator
-******************************************/
-
-
 /*
 An array is created with 5 quote objects.
 each quote object has the properties: quote, source, citation and year.
@@ -46,34 +40,32 @@ const quotes = [
   }
 ];
 
-/***
-  Create the `getRandomQuote` function to:
-   - Create a variable to store a random number
-   - Cse the random number to `return` a random quote object from the `quotes` array.
-***/
-
+/*
+the function getRandomQuote has a variable that picks a random number out of the amount of quotes.
+it uses math.floor to round down the random number from math.random since it comes out as weird decimals like 0.68768
+then multiply the amount of quotes from .length
+last, to make it a reusable function, i call returned the value
+*/
 function getRandomQuote() {
-
+  let randomNumber = Math.floor(Math.random() * quotes.length);
+  return quotes[randomNumber];
 }
 
 
-
-
-/***
-  Create the `printQuote` function to:
-   - Call the `getRandomQuote` function and assign it to a variable.
-   - Create a variable for the HTML string and set it equal to an empty string.
-   - Use the HTML template in the instructions or the markup in the index.html file, AND
-     the random quote vairable to build your HTML string.
-   - Add the quote and source section to the HTML string.
-   - Use an if statement to check for the citation property before adding it to the HTML string.
-   - Use an if statement to check for the year property before adding it to the HTML string.
-   - Don't forget to close that final `p` tag.
-   - Set the `innerHTML` of the `quote-box` div to the HTML string.
-***/
-
-
-
+/*
+i called the randomquote and made it into a variable.
+i made  variable to create the html.
+with dot notation, i combined the random quote variable with the object property
+to get all the info.
+last, i targeted the id to put the variable postQuote to into html
+*/
+function printQuote() {
+  const quote = getRandomQuote();
+  const postQuote = '<p class="quote">' + quote.quote + '</p>' + '<p class="source">' + quote.source +
+  '<span class="citation">' + quote.citation + '</span>' +
+  '<span class="year">' + quote.year + '</span>' + '</p>';
+  document.getElementById('quote-box').innerHTML = postQuote;
+}
 
 /***
   When the "Show another quote" button is clicked, the event listener
@@ -81,5 +73,4 @@ function getRandomQuote() {
   function. So do not make any changes to the line of code below this
   comment.
 ***/
-
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
