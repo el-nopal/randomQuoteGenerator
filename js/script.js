@@ -23,6 +23,7 @@ const quotes = [
     source: "The Dude",
     // citation: "The Big Lebowski",
     // year: 1998,
+    tag: "wisdom",
   },
   // quote 4
   {
@@ -37,6 +38,7 @@ const quotes = [
     source: "The Dude",
     citation: "The Big Lebowski",
     // year: 1998,
+    tag: "golfing",
   }
 ];
 
@@ -59,9 +61,10 @@ i made  variable to create the html.
 with dot notation, i combined the random quote variable with the object property
 to get all the info.
 if/else was used in case there was no value.
-
 last, i targeted the id to put the variable postQuote to into html
 */
+var intervalID = window.setInterval(printQuote, 9000);
+
 function printQuote() {
   let quote = getRandomQuote();
   let postQuote = '<p class="quote">' + quote.quote + '</p>' + '<p class="source">' + quote.source;
@@ -71,7 +74,12 @@ function printQuote() {
       postQuote += '';
   }
   if (quote.year) {
-    postQuote += '<span class="year">' + quote.year + '</span>' + '</p>';
+    postQuote += '<span class="year">' + quote.year + '</span>';
+  } else {
+    postQuote += '';
+  }
+  if (quote.tag) {
+    postQuote += '<span class="year">' + quote.tag + '</span>' + '</p>';
   } else {
     postQuote += '';
   }
