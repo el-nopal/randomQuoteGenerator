@@ -7,7 +7,7 @@ const quotes = [
   {
     quote: "I’m the Dude, so that’s what you call me. That or, uh His Dudeness, or uh Duder, or El Duderino, if you’re not into the whole brevity thing.",
     source: "The Dude",
-    citation: "The Big Lebowski",
+    // citation: "The Big Lebowski",
     year: 1998,
   },
   // quote 2
@@ -21,8 +21,8 @@ const quotes = [
   {
     quote: "The Dude abides.",
     source: "The Dude",
-    citation: "The Big Lebowski",
-    year: 1998,
+    // citation: "The Big Lebowski",
+    // year: 1998,
   },
   // quote 4
   {
@@ -36,7 +36,7 @@ const quotes = [
     quote: "Obviously you’re not a golfer.",
     source: "The Dude",
     citation: "The Big Lebowski",
-    year: 1998,
+    // year: 1998,
   }
 ];
 
@@ -45,6 +45,7 @@ the function getRandomQuote has a variable that picks a random number out of the
 it uses math.floor to round down the random number from math.random since it comes out as weird decimals like 0.68768
 then multiply the amount of quotes from .length
 last, to make it a reusable function, i call returned the value
+quotes[randomNumber] is box notation. the array and the index value
 */
 function getRandomQuote() {
   let randomNumber = Math.floor(Math.random() * quotes.length);
@@ -57,14 +58,26 @@ i called the randomquote and made it into a variable.
 i made  variable to create the html.
 with dot notation, i combined the random quote variable with the object property
 to get all the info.
+if/else was used in case there was no value.
+
 last, i targeted the id to put the variable postQuote to into html
 */
 function printQuote() {
-  const quote = getRandomQuote();
-  const postQuote = '<p class="quote">' + quote.quote + '</p>' + '<p class="source">' + quote.source +
-  '<span class="citation">' + quote.citation + '</span>' +
-  '<span class="year">' + quote.year + '</span>' + '</p>';
+  let quote = getRandomQuote();
+  let postQuote = '<p class="quote">' + quote.quote + '</p>' + '<p class="source">' + quote.source;
+  if (quote.citation) {
+    postQuote += '<span class="citation">' + quote.citation + '</span>';
+  } else {
+      postQuote += '';
+  }
+  if (quote.year) {
+    postQuote += '<span class="year">' + quote.year + '</span>' + '</p>';
+  } else {
+    postQuote += '';
+  }
+
   document.getElementById('quote-box').innerHTML = postQuote;
+
 }
 
 /***
